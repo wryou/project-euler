@@ -53,7 +53,7 @@ def run_all(dir)
            elsif result == $answers[num]
              '.'
            else
-             p [$answers[num], result]
+             #p [$answers[num], result]
              'X'
            end
       if ok == '.'
