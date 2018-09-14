@@ -1,11 +1,8 @@
 def euler002
-    n1 = 1
-    n2 = 2
-    ans = 2
+    n1 = 1; n2 = 2; ans = n2
     begin
-        sum = n1 + n2
-        ans = ans + sum if sum % 2 == 0
-        n1, n2 = n2, sum
-    end until sum >= 4000000
-    return ans
+        ans += (n1 + n2) if (n1 + n2) % 2 == 0
+        n1, n2 = n2, (n1 + n2)
+    end until (n1 + n2) >= 4000000
+    ans
 end
