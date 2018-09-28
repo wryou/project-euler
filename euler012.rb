@@ -1,15 +1,11 @@
+require 'prime'
 def euler012
-    tri = 0; iter = 1; goal = 500; cnt = 0
-    until cnt >= goal
-        tri += iter; cnt = 0
-        for divide in 1..Math.sqrt(tri).to_i do
-            if tri % divide == 0
-                cnt += 2
-            elsif divide == Math.sqrt(tri)
-                cnt += 1
-            end
+    tri = 0; iter = 1; goal = 500; mul = 1
+    until mul >= goal
+        tri += iter; iter += 1; mul = 1
+        for power in 0..Prime.prime_division(tri).size - 1 do
+            mul *= (Prime.prime_division(tri)[power][1].to_i + 1)
         end
-        iter += 1
     end
     tri
 end
