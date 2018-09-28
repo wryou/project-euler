@@ -54,7 +54,7 @@ def run_all(dir)
              '＼(^o^)／'
            else
              #p [$answers[num], result]
-             '＿|￣|○'
+             ' ＿|￣|○ '
            end
       if ok == '.'
         success += 1

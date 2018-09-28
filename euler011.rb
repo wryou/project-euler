@@ -1,5 +1,5 @@
 def euler011
-    size = 20
+    size = 20; ans = 0
     grid = %w(
         08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
         49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -28,5 +28,45 @@ def euler011
             matrix[i][j] = grid[k += 1]
         end
     end
-    # 70600674
+    for i in 1..size do # 
+        for j in 1..size - 3 do
+            mul = 1
+            for k in j..j + 3 do
+                mul *= matrix[i][k].to_i
+                ans = mul if ans < mul
+            end
+        end
+    end
+    for i in 1..size - 3 do
+        for j in 1..size do
+            mul = 1
+            for k in i..i + 3 do
+                mul *= matrix[k][j].to_i
+                ans = mul if ans < mul
+            end
+        end
+    end
+    for i in 1..size - 3 do
+        for j in 1..size - 3 do
+            mul = 1
+            for ii in i..i + 3 do
+                for jj in j..j + 3 do
+                    mul *= matrix[ii][jj].to_i if ii == jj
+                    ans = mul if ans < mul
+                end
+            end
+        end
+    end
+    for i in 1..size - 3 do
+        for j in 4..size do
+            mul = 1
+            for ii in i..i + 3 do
+                for jj in j - 3..j do
+                    mul *= matrix[ii][jj].to_i if ii + jj == i + j
+                    ans = mul if ans < mul
+                end
+            end
+        end
+    end
+    ans
 end
