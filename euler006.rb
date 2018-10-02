@@ -1,7 +1,3 @@
 def euler006
-    ans = 0
-    for i in 1 .. 100 do
-        ans += i ** 2
-    end
-    ((1 + 100) * 100 / 2) ** 2 - ans
+    ((1 + 100) * 100 / 2) ** 2 - (1..100).reduce{|sum, i| sum + i ** 2}
 end
