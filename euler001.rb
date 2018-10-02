@@ -1,3 +1,3 @@
 def euler001
-    (1...1000).select{|x| x % 3 == 0 || x % 5 == 0 }.reduce(0){|a,b| a+b}
+    (1...1000).select{|x| x % 3 == 0 || x % 5 == 0 }.reduce(:+)
 end
