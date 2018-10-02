@@ -1,22 +1,20 @@
-$chain = Array.new(); $chain[1] = 1;
-def collatz(idx)
-    if $chain[idx].nil?
-        if idx.even?
-            return $chain[idx] = collatz(idx / 2) + 1
-        else
-            return $chain[idx] = collatz(idx * 3 + 1) + 1
-        end
-    else
-        return $chain[idx]
-    end
-end
 def euler014
-    range = 100000; ans = 1; length = 1;
-    (2..range).each { |idx|
-        if collatz(idx) > length
-            ans = idx
-            length = $chain[idx]
+    maxIdx = 0; maxLen = 0
+    500001.step(1000000, 2).each do |current|
+        length = 0
+        num = current
+        until num == 1 do
+            if num.even?
+                num /= 2
+            else
+                num = num * 3 + 1
+            end
+            length += 1
         end
-    }
-    ans
+        if length > maxLen
+            maxLen = length
+            maxIdx = current
+        end
+    end
+    maxIdx
 end
