@@ -23,45 +23,12 @@ def euler011
         01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
     )
     matrix = Array.new(size + 1) {Array.new(size + 1)}; k = 0
-    for i in 1..size do
-        for j in 1..size do
-            matrix[i][j] = grid[k += 1]
-        end
-    end
-    for i in 1..size do # 
-        for j in 1..size - 3 do
+    (1..size).each {|i| (1..size).each {|j| matrix[i][j] = grid[k += 1]}}
+    (1..size - 3).each do |i|
+        (4..size).each do |j|
             mul = 1
-            for k in j..j + 3 do
-                mul *= matrix[i][k].to_i
-                ans = mul if ans < mul
-            end
-        end
-    end
-    for i in 1..size - 3 do
-        for j in 1..size do
-            mul = 1
-            for k in i..i + 3 do
-                mul *= matrix[k][j].to_i
-                ans = mul if ans < mul
-            end
-        end
-    end
-    for i in 1..size - 3 do
-        for j in 1..size - 3 do
-            mul = 1
-            for ii in i..i + 3 do
-                for jj in j..j + 3 do
-                    mul *= matrix[ii][jj].to_i if ii == jj
-                    ans = mul if ans < mul
-                end
-            end
-        end
-    end
-    for i in 1..size - 3 do
-        for j in 4..size do
-            mul = 1
-            for ii in i..i + 3 do
-                for jj in j - 3..j do
+            (i..i + 3).each do |ii|
+                (j - 3..j).each do |jj|
                     mul *= matrix[ii][jj].to_i if ii + jj == i + j
                     ans = mul if ans < mul
                 end
