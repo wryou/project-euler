@@ -1,14 +1,17 @@
 def euler007
-    idx = 1; prime = 2; num = 1
-    until idx == 10001
-        num += 2; divide = 2; flag = true
-        while divide <= Math.sqrt(num)
-            flag = false if num % divide == 0
-            divide += 1
+    found = Array.new([ 2 ]) # the first prime number
+    num = 1 # current number
+    until found.size == 10001
+        num += 2
+        i = 0
+        flag = true
+        while flag && found[i] <= Math.sqrt(num) && i < found.size
+            flag = false if num % found[i] == 0
+            i += 1
         end
-        if flag 
-            idx += 1; prime = num
-        end
+        found << num if flag
+
+        # found << num unless found.select { |prime| prime <= Math.sqrt(num) }.any? { |prime| num % prime == 0 }
     end
-    prime
+    found.last
 end
